@@ -1,6 +1,14 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// No Node.js APIs are available in this process because
-// `nodeIntegration` is turned off. Use `preload.js` to
-// selectively enable features needed in the rendering
-// process.
+const { ipcRenderer } = require('electron')
+const { BrowserWindow } = require('electron').remote
+
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('DomContentLoaded')
+    document.getElementById("fuck").addEventListener('click', () => {
+        ipcRenderer.send('fuckYou', '嘛噶秋海')
+        let win = new BrowserWindow({
+            width: 500,
+            height: 500,
+        })
+        win.loadURL('https://baidu.com')
+    })
+})
